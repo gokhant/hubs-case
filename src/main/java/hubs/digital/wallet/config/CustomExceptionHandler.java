@@ -19,7 +19,7 @@ import java.util.List;
 public class CustomExceptionHandler {
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<ErrorResponse> handleGeneralException(Exception e) {
-        return generateErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "system is having technical difficulties");
+        return generateErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "system is having technical difficulties: " + e.getMessage());
     }
 
     @ExceptionHandler(value = {BaseException.class})

@@ -37,7 +37,6 @@ public class WalletController {
 
     @Operation(
             summary = "Create a wallet for a customer",
-            description = "",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @ApiResponses(value = {
@@ -55,7 +54,6 @@ public class WalletController {
 
     @Operation(
             summary = "Gets list of wallets for a customer",
-            description = "",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @GetMapping(value = Wallets, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -67,7 +65,6 @@ public class WalletController {
 
     @Operation(
             summary = "Deposit to a customer's wallet",
-            description = "Certain amounts may require approval",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @PostMapping(value = Wallets + "/{walletId}" + Deposit, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -79,7 +76,6 @@ public class WalletController {
 
     @Operation(
             summary = "Withdraws from a customer's wallet",
-            description = "Certain amounts may require approval",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @PostMapping(value = Wallets + "/{walletId}" + Withdrawal, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})

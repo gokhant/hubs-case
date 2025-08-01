@@ -32,7 +32,6 @@ public class TransactionController {
 
     @Operation(
             summary = "List transactions done on a wallet",
-            description = "",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @GetMapping(value = Transactions, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -44,7 +43,6 @@ public class TransactionController {
 
     @Operation(
             summary = "Change the status of a transaction to a customer's wallet",
-            description = "",
             security = @SecurityRequirement(name = "bearerAuth")
     )
     @PutMapping(value = Transactions + "/{transactionId}", produces = {MediaType.APPLICATION_JSON_VALUE})

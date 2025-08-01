@@ -53,9 +53,7 @@ public class WalletServiceTest {
         WithdrawalRequest withdrawalRequest = WithdrawalRequest.builder().amount(BigDecimal.TEN).destination("42234234234").destinationType(OppositePartyType.IBAN)
                         .currency(Currency.TRY).build();
         when(walletRepository.findById(35L)).thenReturn(Optional.ofNullable(wallet));
-        Assertions.assertThrows(ResponseStatusException.class, () -> {
-            walletService.makeWithdraw(wallet.getCustomerId(), wallet.get_id(), withdrawalRequest);
-        });
+        Assertions.assertThrows(ResponseStatusException.class, () -> walletService.makeWithdraw(wallet.getCustomerId(), wallet.get_id(), withdrawalRequest));
     }
 
     @Test
@@ -70,9 +68,7 @@ public class WalletServiceTest {
                 .currency(Currency.TRY).build();
         when(walletRepository.findById(35L)).thenReturn(Optional.ofNullable(wallet));
         when(config.getMaxAmountToApprove()).thenReturn(BigDecimal.valueOf(1000));
-        Assertions.assertThrows(InsufficientBalance.class, () -> {
-            walletService.makeWithdraw(wallet.getCustomerId(), wallet.get_id(), withdrawalRequest);
-        });
+        Assertions.assertThrows(InsufficientBalance.class, () -> walletService.makeWithdraw(wallet.getCustomerId(), wallet.get_id(), withdrawalRequest));
     }
 
 

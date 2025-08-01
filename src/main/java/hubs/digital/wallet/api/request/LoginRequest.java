@@ -1,6 +1,5 @@
 package hubs.digital.wallet.api.request;
 
-import hubs.digital.wallet.common.Currency;
 import hubs.digital.wallet.common.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
