@@ -1,0 +1,92 @@
+<configuration>
+    <springProfile name="dev|local">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <Pattern>
+                    %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+                </Pattern>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="stdout"/>
+        </root>
+
+        <logger name="org.jboss.logging" level="warn" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <logger name="hubs.digital.wallet" level="debug" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+
+        <logger name="org.springframework" level="warn" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+
+        <logger name="io.micrometer" level="debug" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="test">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <layout class="com.google.cloud.spring.logging.StackdriverJsonLayout">
+                    <projectId>${projectId}</projectId>
+                    <includeTraceId>true</includeTraceId>
+                    <includeSpanId>true</includeSpanId>
+                    <includeLevel>true</includeLevel>
+                    <includeThreadName>true</includeThreadName>
+                    <includeMDC>true</includeMDC>
+                    <includeLoggerName>true</includeLoggerName>
+                </layout>
+            </encoder>
+        </appender>
+
+        <root level="warn">
+            <appender-ref ref="stdout"/>
+        </root>
+
+        <logger name="hubs.digital.wallet" level="debug" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+
+        <logger name="org.springframework" level="warn" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+
+        <logger name="io.micrometer" level="debug" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="prod">
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <layout class="com.google.cloud.spring.logging.StackdriverJsonLayout">
+                    <projectId>${projectId}</projectId>
+                    <includeTraceId>true</includeTraceId>
+                    <includeSpanId>true</includeSpanId>
+                    <includeLevel>true</includeLevel>
+                    <includeThreadName>true</includeThreadName>
+                    <includeMDC>true</includeMDC>
+                    <includeLoggerName>true</includeLoggerName>
+                </layout>
+            </encoder>
+        </appender>
+
+        <root level="warn">
+            <appender-ref ref="stdout"/>
+        </root>
+
+        <logger name="hubs.digital.wallet" level="info" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+
+        <logger name="org.springframework" level="warn" additivity="false">
+            <appender-ref ref="stdout"/>
+        </logger>
+    </springProfile>
+
+</configuration>
